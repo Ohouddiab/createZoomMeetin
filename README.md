@@ -8,6 +8,7 @@ Getting Started
  
  
  3- Start your app
+Will 
  
 npm run dev
 
