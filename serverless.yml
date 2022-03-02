@@ -1,0 +1,19 @@
+service: zoomMeeting
+
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  region: us-east-1
+  memorySize: 1500
+  timeout: 29
+
+functions:
+  hello:
+    handler: ./lib/handler.CreateZoomMeeting
+    timeout: 29
+    events:
+      - httpApi:
+          path: /zoom/meeting
+          method: post
