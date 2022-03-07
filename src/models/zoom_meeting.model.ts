@@ -337,6 +337,6 @@ const zoom_meetingSchema = new Schema(
   { strict: true, timestamps: true }
 );
 const zoomMeetingPostSchema: Model<zoom_meetingDoc> =
-  mongoose.model<zoom_meetingDoc>("zoom_meeting", zoom_meetingSchema);
+  mongoose.model<zoom_meetingDoc>("zoom_meetings", zoom_meetingSchema);
 
 export { zoomMeetingPostSchema, zoom_meetingDoc };

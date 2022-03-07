@@ -8,7 +8,6 @@ import {
 export const CreateZoomMeeting = async (req: Request, res: Response) => {
   try {
     const body = req.body;
-    await checkBody(body);
     const zoomMeetingInput: zoom_meetingDoc = body;
     await zoomMeetingPostSchema.create(zoomMeetingInput);
     const zoomDetailsInput = await CreateZoomDetails(body, req);
@@ -55,23 +54,6 @@ const CreateZoomDetails = async (body: zoom_meetingDoc, req: Request) => {
     };
 
     return result;
-  } catch (e) {
-    throw e;
-  }
-};
-const checkBody = async (body: zoom_meetingDoc) => {
-  try {
-    body.recurrence.end_date_time
-      ? new Date(body.recurrence.end_date_time).toUTCString()
-      : body.recurrence.end_date_time;
-
-    if (body.recurrence.repeat_interval <= 3) {
-      body.recurrence.monthly_week = 0;
-    } else if (body.recurrence.repeat_interval <= 12) {
-      body.recurrence.monthly_day = 0;
-    } else {
-      body.recurrence.monthly_day = 0;
-    }
   } catch (e) {
     throw e;
   }
