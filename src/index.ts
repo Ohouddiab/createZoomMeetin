@@ -1,6 +1,5 @@
 import express from "express";
 import mongoose from "mongoose";
-
 import { zoomMeetingRoute } from "./routes/zoom_details.route";
 const app = express();
 
