@@ -81,7 +81,7 @@ type Tracking_fields = Document & {
   value?: string;
 };
 type zoom_details = Document & {
-  [x: string]: any;
+  // [x: string]: any;
   agenda: string;
   default_password: boolean;
   duration: number;
@@ -189,11 +189,6 @@ const Authentication_exception = new Schema({
   email: {
     type: String,
     lowercase: true,
-    trim: true,
-    required: true,
-    index: true,
-    unique: true,
-    sparse: true,
     validate: {
       validator: (email: string) =>
         email.match(
@@ -216,11 +211,6 @@ const Interpreters = new Schema({
   email: {
     type: String,
     lowercase: true,
-    trim: true,
-    required: true,
-    index: true,
-    unique: true,
-    sparse: true,
     validate: {
       validator: (email: string) =>
         email.match(
@@ -278,11 +268,6 @@ const Settings = new Schema({
       email: {
         type: String,
         lowercase: true,
-        trim: true,
-        required: true,
-        index: true,
-        unique: true,
-        sparse: true,
         validate: {
           validator: (email: string) =>
             email.match(
@@ -343,7 +328,7 @@ const zoom_detailsSchema = new Schema(
     tracking_fields: [Tracking_fields],
     type: { type: Number, default: 2, enum: [1, 2, 3, 8] },
   },
-  { strict: false, timestamps: true, usePushEach: true }
+  { strict: true, timestamps: true, usePushEach: true }
 );
 const zoomDetailsPostSchema: Model<zoom_detailsDoc> =
   mongoose.model<zoom_detailsDoc>("zoom_details", zoom_detailsSchema);
