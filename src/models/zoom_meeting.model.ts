@@ -80,25 +80,8 @@ type Tracking_fields = Document & {
   field: string;
   value?: string;
 };
-// type zoom_meeting = Document & {
-//   // [x: string]: any;
-//   agenda: string;
-//   default_password: boolean;
-//   duration: number;
-//   password: string;
-//   pre_schedule: boolean;
-//   recurrence: Recurrence;
-//   schedule_for: string;
-//   settings: Settings;
-//   start_time: string;
-//   template_id: string;
-//   timezone: string;
-//   topic: string;
-//   tracking_fields: Tracking_fields[];
-//   type: number;
-// };
 
-type zoom_meetingInterface = Document & {
+interface zoom_meetingInterface {
   agenda: string;
   default_password: boolean;
   duration: number;
@@ -113,23 +96,6 @@ type zoom_meetingInterface = Document & {
   topic: string;
   tracking_fields: Tracking_fields[];
   type: number;
-};
-
-interface zoom_meetingDoc extends mongoose.Model<zoom_meetingInterface> {
-  agenda: zoom_meetingInterface["agenda"];
-  default_password: zoom_meetingInterface["default_password"];
-  duration: zoom_meetingInterface["duration"];
-  password: zoom_meetingInterface["password"];
-  pre_schedule: zoom_meetingInterface["pre_schedule"];
-  recurrence: zoom_meetingInterface["recurrence"];
-  schedule_for: zoom_meetingInterface["schedule_for"];
-  settings: zoom_meetingInterface["settings"];
-  start_time: zoom_meetingInterface["start_time"];
-  template_id: zoom_meetingInterface["template_id"];
-  timezone: zoom_meetingInterface["timezone"];
-  topic: zoom_meetingInterface["topic"];
-  tracking_fields: zoom_meetingInterface["tracking_fields"];
-  type: zoom_meetingInterface["type"];
 }
 
 const Recurrence = new Schema({
@@ -336,7 +302,7 @@ const zoom_meetingSchema = new Schema(
   },
   { strict: true, timestamps: true }
 );
-const zoomMeetingPostSchema: Model<zoom_meetingDoc> =
-  mongoose.model<zoom_meetingDoc>("zoom_meetings", zoom_meetingSchema);
+const zoomMeetingPostSchema: Model<zoom_meetingInterface> =
+  mongoose.model<zoom_meetingInterface>("zoom_meetings", zoom_meetingSchema);
 
-export { zoomMeetingPostSchema, zoom_meetingDoc };
+export { zoomMeetingPostSchema, zoom_meetingInterface };

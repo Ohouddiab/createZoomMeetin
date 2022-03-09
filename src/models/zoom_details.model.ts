@@ -36,18 +36,11 @@ type Settings = Document & {
   uuid: String;
 };
 
-type zoom_detalisInterface = Document & {
+interface zoom_detalisInterface {
   duration: Number;
   host_id: String;
   join_url: String;
   settings: Settings;
-};
-
-interface zoom_detailsDoc extends mongoose.Model<zoom_detalisInterface> {
-  duration: zoom_detalisInterface["duration"];
-  host_id: zoom_detalisInterface["host_id"];
-  join_url: zoom_detalisInterface["join_url"];
-  settings: zoom_detalisInterface["settings"];
 }
 
 const Rooms = new Schema({
@@ -94,7 +87,7 @@ const zoom_detalisSchema = new Schema(
   },
   { strict: true, timestamps: true }
 );
-const zoomDetailsPostSchema: Model<zoom_detailsDoc> =
-  mongoose.model<zoom_detailsDoc>("zoom_details", zoom_detalisSchema);
+const zoomDetailsPostSchema: Model<zoom_detalisInterface> =
+  mongoose.model<zoom_detalisInterface>("zoom_details", zoom_detalisSchema);
 
-export { zoomDetailsPostSchema, zoom_detailsDoc };
+export { zoomDetailsPostSchema, zoom_detalisInterface };
